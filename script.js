@@ -21,15 +21,13 @@ const winPatterns = [
 const resetGame = () => {
   turnO = true;
   count = 0;
-//   New Game Start karne ke liye Box ko enable karna hoga
-  enableBoxes(); 
-// When new game is start then we have to hide winner Declaration 
-    msgContainer.classList.add("hide");
+  enableBoxes();
+  msgContainer.classList.add("hide");
 };
 
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
-    if (turnO === true) {
+    if (turnO) {
       //playerO
       box.innerText = "O";
       turnO = false;
@@ -49,8 +47,6 @@ boxes.forEach((box) => {
   });
 });
 
-// This fumnction is used for making Game is Draw
-
 const gameDraw = () => {
   msg.innerText = `Game was a Draw.`;
   msgContainer.classList.remove("hide");
@@ -69,18 +65,14 @@ const enableBoxes = () => {
     box.innerText = "";
   }
 };
-// This function is used for appering Winner name on the screen
+
 const showWinner = (winner) => {
   msg.innerText = `Congratulations, Winner is ${winner}`;
   msgContainer.classList.remove("hide");
   disableBoxes();
 };
-// This function is used for checking the winner of the GAME
 
 const checkWinner = () => {
-
-    // This is main logical for Game 
-
   for (let pattern of winPatterns) {
     let pos1Val = boxes[pattern[0]].innerText;
     let pos2Val = boxes[pattern[1]].innerText;
